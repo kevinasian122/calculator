@@ -25,3 +25,14 @@ function operate (operator, num1, num2){
         return divide(num1, num2);
     }
 }
+const text = document.querySelector('.text');
+function handleClick (number){ //handleclick for most of the buttons
+    if(text.textContent === '0') text.textContent = number;
+    else text.textContent += number;
+    
+}
+
+const clear = document.querySelector('.clear') //handlclick for clearing display
+clear.addEventListener ('click', ()=>{
+    text.textContent = "0";
+})
