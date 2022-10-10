@@ -1,0 +1,12 @@
+body{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    min-height:100vh;
+    min-width:100vh;
+}
+.background{
+    width: 500px;
+    height: 650px;
+    background-color: darkgray;
+}
