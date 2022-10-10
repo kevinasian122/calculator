@@ -7,6 +7,50 @@ body{
 }
 .background{
     width: 500px;
-    height: 650px;
+    height: 600px;
     background-color: darkgray;
+    
+    border-radius:15px;
+    padding:15px;
+    border: 3px solid black;
+    display:flex;
+    flex-direction: column;
+}
+.display{
+    height: 20%;
+    background-color: lightblue;
+    display:flex;
+    justify-content: right;
+    align-items: center;
+    border-radius: 10px;
+    border: 2px solid black;
+    padding: 0px 15px;
+}
+
+.text{
+    color: #f1356d;
+    font-size: 55px;
+    font-weight: bold;
+}
+
+.bottom{
+    display:flex;
+    height:80%;
+    flex-flow:wrap;
+    padding:10px 0;
+    gap:13px;
+}
+div.bottom > button {
+    border-radius:5px;
+    border: 2px solid black;
+    width:23%;
+    height:18%;
+    font-size:25px;
+}
+.zero{
+    width:243px !important;
+}
+
+button:hover{
+    background-color:lightgray;
 }
