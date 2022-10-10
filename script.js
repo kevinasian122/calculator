@@ -25,14 +25,64 @@ function operate (operator, num1, num2){
         return divide(num1, num2);
     }
 }
+
+let num1 = 0;
+let result = 0;
+let num2 = 0;
+let operator = '';
+let newNum = false; 
+let clickedOperator = false; 
+let clickedEquals = false;
 const text = document.querySelector('.text');
 function handleClick (number){ //handleclick for most of the buttons
-    if(text.textContent === '0') text.textContent = number;
+    if(newNum){ //if operator was clicked, then display needs to refresh and be the new input
+        text.textContent = number;
+        newNum = false;
+    }
+    else if(text.textContent === '0') text.textContent = number;
+    else if (clickedEquals && !clickedOperator){ //check if number clicked right after equals, new calculation
+        text.textContent = number;
+        num1 = 0;
+        clickedEquals = false;
+    }
     else text.textContent += number;
+    num1 = num1*10 + number;
+    
     
 }
 
-const clear = document.querySelector('.clear') //handlclick for clearing display
-clear.addEventListener ('click', ()=>{
+function operatorClick (op){
+    if(clickedOperator){ //if operator already clicked and now clicked again, compute and display the result
+        result = operate (operator, num2, num1);
+        text.textContent = parseFloat((result).toFixed(10)); //limits number of decimals without trailing 0's
+        num1 = result;
+        num2 = 0;
+        operator = '';
+    }
+    num2 = num1;
+    num1 = 0;
+    operator = op;
+    newNum = true;
+    clickedOperator = true;
+}
+function equalsClick (){
+    result = operate (operator, num2, num1);
+    text.textContent = parseFloat((result).toFixed(10));
+    num1 = result; //setting num1 = result so that further calculations can be done if an operator is pressed
+    num2 = 0;
+    clickedEquals = true;
+    operator = '';
+    clickedOperator = false;
+    
+
+    
+}
+
+function clearClick() {
     text.textContent = "0";
-})
+    num1 = 0;
+    num2 = 0;
+    clickedOperator = false;
+    newNum = false;
+    operator = '';
+}
