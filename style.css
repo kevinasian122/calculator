@@ -4,10 +4,13 @@ body{
     align-items: center;
     min-height:100vh;
     min-width:100vh;
+    
 }
 .background{
     width: 500px;
     height: 600px;
+    max-width:90vh;
+    max-height:90vh;
     background-color: darkgray;
     
     border-radius:15px;
@@ -25,6 +28,7 @@ body{
     border-radius: 10px;
     border: 2px solid black;
     padding: 0px 15px;
+    margin-bottom: 4px;
 }
 
 .text{
@@ -40,15 +44,28 @@ body{
     padding:10px 0;
     gap:13px;
 }
-div.bottom > button {
+button {
     border-radius:5px;
     border: 2px solid black;
     width:23%;
     height:18%;
-    font-size:25px;
+    font-size:30px;
 }
 .zero{
-    width:243px !important;
+    width:243px;
+}
+button.multiply, .divide, .minus, .plus, .equals{
+    background-color: #f6b876;
+}
+.multiply:hover, .divide:hover, .minus:hover, .plus:hover, .equals:hover{
+    background-color: #bc8d5a;
+}
+.clear, .delete, .mod {
+    background-color: lightyellow;
+}
+.clear:hover, .delete:hover, .mod:hover{
+    background-color: rgb(207, 207, 180);
+
 }
 
 button:hover{

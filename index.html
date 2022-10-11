@@ -14,8 +14,8 @@
         </div>
         <div class="bottom">
             <button class="clear" onclick = "clearClick()">AC</button>
-            <button class="sign">+/-</button>
-            <button class="mod" >%</button>
+            <button class="delete" onclick = "deleteClick()">Del</button>
+            <button class="mod" onclick = "operatorClick('%')">%</button>
             <button class="divide" onclick = "operatorClick('/')">/</button>
             <button class="seven" onclick = "handleClick(7)">7</button>
             <button class="eight" onclick = "handleClick(8)">8</button>
@@ -30,7 +30,7 @@
             <button class="three" onclick = "handleClick(3)">3</button>
             <button class="plus" onclick = "operatorClick('+')">+</button>
             <button class="zero" onclick = "handleClick(0)">0</button>
-            <button class="dot">.</button>  <!--need decimal handleclick-->
+            <button class="dot" onclick = "decimalClick()">.</button>  <!--need decimal handleclick-->
             <button class="equals" onclick = "equalsClick()">=</button>
         </div>
     </div>

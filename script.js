@@ -10,6 +10,9 @@ function multiply (num1, num2){
 function divide (num1, num2){
     return num1 / num2;
 }
+function mod (num1, num2){
+    return num1 % num2;
+}
 
 function operate (operator, num1, num2){
     if(operator === '+'){
@@ -24,6 +27,9 @@ function operate (operator, num1, num2){
     else if (operator === '/'){
         return divide(num1, num2);
     }
+    else if (operator === '%'){
+        return mod(num1, num2);
+    }
 }
 
 let num1 = 0;
@@ -33,6 +39,8 @@ let operator = '';
 let newNum = false; 
 let clickedOperator = false; 
 let clickedEquals = false;
+let clickedDecimal = true;
+
 const text = document.querySelector('.text');
 function handleClick (number){ //handleclick for most of the buttons
     if(newNum){ //if operator was clicked, then display needs to refresh and be the new input
@@ -42,11 +50,13 @@ function handleClick (number){ //handleclick for most of the buttons
     else if(text.textContent === '0') text.textContent = number;
     else if (clickedEquals && !clickedOperator){ //check if number clicked right after equals, new calculation
         text.textContent = number;
-        num1 = 0;
+        
         clickedEquals = false;
     }
+    
     else text.textContent += number;
-    num1 = num1*10 + number;
+    num1 = parseFloat(text.textContent);
+    
     
     
 }
@@ -55,16 +65,23 @@ function operatorClick (op){
     if(clickedOperator){ //if operator already clicked and now clicked again, compute and display the result
         result = operate (operator, num2, num1);
         text.textContent = parseFloat((result).toFixed(10)); //limits number of decimals without trailing 0's
-        num1 = result;
-        num2 = 0;
-        operator = '';
+        num1 = 0;
+        num2 = result;
+        operator = op;
+        newNum = true;
+        
     }
-    num2 = num1;
-    num1 = 0;
-    operator = op;
-    newNum = true;
-    clickedOperator = true;
+    else{
+        num2 = num1;
+        num1 = 0;
+        operator = op;
+        newNum = true;
+        clickedOperator = true;
+        
+    }
+    
 }
+
 function equalsClick (){
     result = operate (operator, num2, num1);
     text.textContent = parseFloat((result).toFixed(10));
@@ -74,15 +91,47 @@ function equalsClick (){
     operator = '';
     clickedOperator = false;
     
+    
 
     
 }
 
 function clearClick() {
-    text.textContent = "0";
+    text.textContent = 0;
     num1 = 0;
     num2 = 0;
     clickedOperator = false;
     newNum = false;
+    clickedEquals = false;
     operator = '';
+   
+}
+
+function deleteClick(){
+    if(newNum){ //reset if clicked right after operator
+        text.textContent = "0";
+        num1 = 0;
+        num2 = 0;
+        clickedOperator = false;
+        newNum = false;
+        operator = '';
+    }
+    if(text.textContent === '0') return;
+    
+    text.textContent = text.textContent.toString().slice(0, -1); //checking if last digit is decimal, if so remove 
+    if(text.textContent.charAt(text.textContent.length -1) == '.'){
+        text.textContent = text.textContent.toString().slice(0, -1);
+    }
+    if(text.textContent == ''){
+        text.textContent = 0;
+    }
+    num1 = parseFloat(text.textContent);
+}
+
+function decimalClick(){
+    if(text.textContent == 0){
+        text.textContent = '0.';
+    }
+    else text.textContent += '.';
+    
 }
